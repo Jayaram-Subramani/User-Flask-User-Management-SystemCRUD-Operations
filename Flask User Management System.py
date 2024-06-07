@@ -131,7 +131,7 @@ def login():
         password = request.json.get('password')
         
         user = User.query.filter_by(email=email).first()
-        if not user or user.password != password or user.email_verified = False:
+        if not user or user.password != password or user.email_verified != True:
             return jsonify({'error': 'Invalid Email or Password'})
         
         else:

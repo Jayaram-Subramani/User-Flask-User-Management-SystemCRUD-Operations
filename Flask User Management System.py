@@ -47,7 +47,7 @@ def send_verification_email(user):
     db.session.commit()
 
     msg = Message('Email Verification',
-                  sender='ramjaya852@gmail.com',
+                  sender=app.config['MAIL_USERNAME'],
                   recipients=[user.email])
     verification_link = f"http://127.0.0.1:5000/verify_email?token={token}"
     msg.body = f"Hello {user.firstname},\n\nPlease click the following link to verify your email address:\n\n{verification_link}"
@@ -60,7 +60,7 @@ def send_password_reset_email(user):
     db.session.commit()
 
     msg = Message('Password Reset',
-                  sender='ramjaya852@gmail.com',
+                  sender=app.config['MAIL_USERNAME']',
                   recipients=[user.email])
     reset_link = f"http://127.0.0.1:5000/reset_password?token={token}"
     msg.body = f"Hello {user.firstname},\n\nPlease click the following link to reset your password:\n\n{reset_link}"
